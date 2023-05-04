@@ -14,6 +14,7 @@ public class CalculationEvent extends ApplicationEvent {
         this.y = y;
         this.result = result;
         this.operationType = operationType;
+        Object object;
     }
 
     public int getX() {
