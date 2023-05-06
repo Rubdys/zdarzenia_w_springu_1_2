@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group 'com.example'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'net.bytebuddy:byte-buddy:1.10.13'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    jar {
+        from {
+            configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+        }
+        manifest {
+            attributes "Premain-Class": 'com.example.Agent',
+                    "Can-Redefine-Classes" : "true",
+                    "Can-Retransform-Classes" : "true"
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

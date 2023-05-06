@@ -16,12 +16,12 @@ public class ProductController implements ApplicationEventPublisherAware {
 
     @PostMapping(path = "createProduct")
     public void createProduct(@RequestBody ProductDTO productDTO) {
-        System.out.println("Register product: " + productDTO.productName());
+        System.out.println("Register product: " + productDTO.getProductName());
         publisher.publishEvent(
                 new ProductCreationEvent(
                         this,
-                        productDTO.productName(),
-                        productDTO.otherData()
+                        productDTO.getProductName(),
+                        productDTO.getOtherData()
                 )
         );
     }

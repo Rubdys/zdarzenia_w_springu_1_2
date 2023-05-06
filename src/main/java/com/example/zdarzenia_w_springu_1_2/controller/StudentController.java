@@ -21,7 +21,7 @@ public class StudentController {
 
     @PostMapping(path = "createStudents")
     public void createStudents(@RequestBody StudentDTO studentDTO){
-        Map<String, Student> studentMap = studentFactory.createStudentsAndReturnInMap(studentDTO.numberOfStudents(), studentDTO.indexLength());
+        Map<String, Student> studentMap = studentFactory.createStudentsAndReturnInMap(studentDTO.getNumberOfStudents(), studentDTO.getIndexLength());
         System.out.println(studentMap);
     }
 }

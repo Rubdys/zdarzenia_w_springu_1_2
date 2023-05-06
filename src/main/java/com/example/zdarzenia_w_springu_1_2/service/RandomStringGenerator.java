@@ -24,12 +24,16 @@ public class RandomStringGenerator {
 
     private char generateRandomCharacter(){
         int randomNumber = random.nextInt(3);
-        return switch (randomNumber) {
-            case 0 -> generateRandomLowerCase();
-            case 1 -> generateRandomUpperCase();
-            case 2 -> generateRandomNumberBasedOnASCII();
-            default -> ' ';
-        };
+        switch (randomNumber) {
+            case 0:
+                return generateRandomLowerCase();
+            case 1:
+                return generateRandomUpperCase();
+            case 2:
+                return generateRandomNumberBasedOnASCII();
+            default:
+                return ' ';
+        }
     }
 
     private char generateRandomLowerCase(){
@@ -54,6 +58,6 @@ public class RandomStringGenerator {
     }
 
     private char randomCharInRange(int startingASCII, int endingASCII){
-        return (char) random.nextInt(startingASCII, endingASCII + 1);
+        return (char) (random.nextInt(endingASCII - startingASCII) + startingASCII);
     }
 }

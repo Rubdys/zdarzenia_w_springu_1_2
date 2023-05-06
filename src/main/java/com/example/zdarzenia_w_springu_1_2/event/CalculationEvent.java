@@ -2,19 +2,20 @@ package com.example.zdarzenia_w_springu_1_2.event;
 
 import org.springframework.context.ApplicationEvent;
 
+import java.math.BigDecimal;
+
 public class CalculationEvent extends ApplicationEvent {
     private int x;
     private int y;
-    private double result;
+    private BigDecimal result;
     private String operationType;
 
-    public CalculationEvent(Object source, int x, int y, double result, String operationType) {
+    public CalculationEvent(Object source, int x, int y, BigDecimal result, String operationType) {
         super(source);
         this.x = x;
         this.y = y;
         this.result = result;
         this.operationType = operationType;
-        Object object;
     }
 
     public int getX() {
@@ -25,7 +26,7 @@ public class CalculationEvent extends ApplicationEvent {
         return y;
     }
 
-    public double getResult() {
+    public BigDecimal getResult() {
         return result;
     }
 
