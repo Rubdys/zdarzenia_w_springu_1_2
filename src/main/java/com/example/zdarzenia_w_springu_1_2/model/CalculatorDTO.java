@@ -1,5 +1,8 @@
 package com.example.zdarzenia_w_springu_1_2.model;
 
+import com.example.zdarzenia_w_springu_1_2.model.annotations.Convertable;
+
+@Convertable
 public class CalculatorDTO {
     private int x;
     private int y;

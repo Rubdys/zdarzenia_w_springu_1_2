@@ -16,7 +16,7 @@ public class ProductController implements ApplicationEventPublisherAware {
 
     @PostMapping(path = "createProduct")
     public void createProduct(@RequestBody ProductDTO productDTO) {
-        System.out.println("Register product: " + productDTO.getProductName());
+        System.out.println(productDTO);
         publisher.publishEvent(
                 new ProductCreationEvent(
                         this,
