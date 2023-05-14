@@ -10,7 +10,7 @@ public class Agent {
     public static void premain(String args, Instrumentation instrumentation){
         System.out.println("Agent is running");
         AgentBuilder agentBuilder = new AgentBuilder.Default()
-                .type(ElementMatchers.nameStartsWith("com.example.zdarzenia_w_springu_1_2.model.User"))
+                .type(ElementMatchers.hasSuperType(ElementMatchers.named("User")))
                 .transform((builder, typeDescription, classLoader, module) ->
                         builder.visit(Advice.to(JavaAgentControllerMonitor.class).on(ElementMatchers.nameStartsWith("doSomething"))));
         agentBuilder.installOn(instrumentation);

@@ -1,4 +1,4 @@
-package com.example.zdarzenia_w_springu_1_2.service;
+package com.example.zdarzenia_w_springu_1_2.helper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

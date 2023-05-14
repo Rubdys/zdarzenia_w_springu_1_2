@@ -1,5 +1,6 @@
 package com.example.zdarzenia_w_springu_1_2.service;
 
+import com.example.zdarzenia_w_springu_1_2.helper.RandomStringGenerator;
 import com.example.zdarzenia_w_springu_1_2.model.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

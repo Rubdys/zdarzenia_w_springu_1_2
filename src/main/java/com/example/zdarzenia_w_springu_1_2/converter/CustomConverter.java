@@ -23,16 +23,19 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class CustomConverter implements HttpMessageConverter<Object> {
+
+    public static final String SUPPORTED_MEDIA_TYPE = "plain";
+
     @Override
     public boolean canRead(Class<?> clazz, MediaType mediaType) {
         return clazz.isAnnotationPresent(Convertable.class) &&
-                mediaType.getSubtype().equals("plain") && mediaType.getType().equals("text");
+                mediaType.getSubtype().equals(SUPPORTED_MEDIA_TYPE) && mediaType.getType().equals("text");
     }
 
     @Override
     public boolean canWrite(Class<?> clazz, MediaType mediaType) {
         return clazz.isAnnotationPresent(Convertable.class) &&
-                mediaType.getSubtype().equals("plain") && mediaType.getType().equals("text");
+                mediaType.getSubtype().equals(SUPPORTED_MEDIA_TYPE) && mediaType.getType().equals("text");
     }
 
     @Override
@@ -49,7 +52,7 @@ public class CustomConverter implements HttpMessageConverter<Object> {
 
     @Override
     public void write(Object o, MediaType contentType, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
-
+        throw new UnsupportedOperationException("Writing unsupported");
     }
 
     private String messageToString(HttpInputMessage inputMessage) throws IOException {
@@ -77,15 +80,12 @@ public class CustomConverter implements HttpMessageConverter<Object> {
 
     private Object createClassObject(Class<?> clazz, Map<Field, String> fields) {
         Constructor<?> constructor = getConstructorFromClass(clazz, fields);
-        System.out.println("Constructor: " + constructor);
-        System.out.println("Fields: " + fields);
-        System.out.println(Arrays.toString(fields.values().toArray()));
         Object[] args = fillArgs(fields);
 
         try {
             return constructor.newInstance(args);
         } catch (Exception e){
-            System.out.println(e);
+
         }
         throw new HttpMessageNotWritableException("Not working");
     }
