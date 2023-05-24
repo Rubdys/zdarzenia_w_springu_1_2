@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @RestController
@@ -19,9 +20,8 @@ public class StudentController {
         this.studentFactory = studentFactory;
     }
 
-    @PostMapping(path = "createStudents")
-    public void createStudents(@RequestBody StudentDTO studentDTO){
+    @PostMapping(path = "/createStudents")
+    public void createStudents(@Valid @RequestBody StudentDTO studentDTO){
         Map<String, Student> studentMap = studentFactory.createStudentsAndReturnInMap(studentDTO.getNumberOfStudents(), studentDTO.getIndexLength());
-        System.out.println(studentMap);
     }
 }
